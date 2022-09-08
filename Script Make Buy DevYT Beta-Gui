@@ -253,7 +253,7 @@ local Tab4 = Window:NewTab("ESP Settings")
 		line.Color = color
 	end)	
 
-local Tab2 = Window:NewTab("Speed/InfJump")
+local Tab2 = Window:NewTab("Speed/JumpTool")
 	local section2 = Tab2:NewSection("Normal")
 
 	section2:NewToggle("Infinite Jump", "Jump Infinitly", function(state)
@@ -267,18 +267,28 @@ local Tab2 = Window:NewTab("Speed/InfJump")
 		
 	end)
 
+section2:NewToggle("Give Tool", "N/A", function()
+    mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Equip to Click TP"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
 	section2:NewSlider("Walk Speed", "Change Speed Max 1000", 1000, 0, function(s)
 		LocalPlayer.Character.Humanoid.WalkSpeed = s
 	end)
 
-
-
-
 local Tab3 = Window:NewTab("Credit Script")
 	local creditSection = Tab3:NewSection("DevYT#0826 On Youtube")
 	local creditSection2 = Tab3:NewSection("avys#0005 On Discord")
-
-
+    local creditSection2 = Tab3:NewSection("lol#4281 On Discord")
+    local creditSection2 = Tab3:NewSection("imgabbe On Twitter & Roblox")
 --JUMP HAck
 game:GetService("UserInputService").JumpRequest:connect(function()
 	if IJ then
